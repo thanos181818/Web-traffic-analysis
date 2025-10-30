@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadoop Web Analytics Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hadoop Web Analytics Dashboard</h1>
+            <p>Apache Log Analysis using Hadoop MapReduce</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/page-views">Page Views</a></li>
+                <li><a href="/traffic">Traffic Analysis</a></li>
+                <li><a href="/users">User Analysis</a></li>
+                <li><a href="/peak-hours">Peak Hours</a></li>
+                <li><a href="/errors">Error Analysis</a></li>
+                <li><a href="/content">Content Performance</a></li>
+                <li><a href="/charts">Charts</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="overview">
+                <h2>Project Overview</h2>
+                <p>This project demonstrates Hadoop MapReduce capabilities by analyzing web server logs to extract valuable insights:</p>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>Page Views Analysis</h3>
+                        <p>Identify most visited pages and popular content</p>
+                        <a href="/page-views" class="btn-small">View Analysis</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Traffic Patterns</h3>
+                        <p>Analyze hourly traffic distribution and status codes</p>
+                        <a href="/traffic" class="btn-small">View Analysis</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>User Behavior</h3>
+                        <p>Understand user distribution and referral sources</p>
+                        <a href="/users" class="btn-small">View Analysis</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Peak Hours</h3>
+                        <p>Identify busiest traffic hours and patterns</p>
+                        <a href="/peak-hours" class="btn-small">View Analysis</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Error Analysis</h3>
+                        <p>Monitor error rates and problematic pages</p>
+                        <a href="/errors" class="btn-small">View Analysis</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Content Performance</h3>
+                        <p>Analyze content popularity across time slots</p>
+                        <a href="/content" class="btn-small">View Analysis</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

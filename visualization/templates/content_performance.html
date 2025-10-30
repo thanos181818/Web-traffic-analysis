@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Performance - Hadoop Web Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Content Performance Analysis</h1>
+            <p>Content popularity across time slots</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/page-views">Page Views</a></li>
+                <li><a href="/traffic">Traffic Analysis</a></li>
+                <li><a href="/users">User Analysis</a></li>
+                <li><a href="/peak-hours">Peak Hours</a></li>
+                <li><a href="/errors">Error Analysis</a></li>
+                <li><a href="/content" class="active">Content Performance</a></li>
+                <li><a href="/charts">Charts</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section class="results-section">
+                <h2>Content Performance Analysis</h2>
+                <div class="results-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Content + Time</th>
+                                <th>Views</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in content_performance %}
+                            <tr>
+                                <td>{{ item.metric }}</td>
+                                <td>{{ item.views }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

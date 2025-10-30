@@ -1,0 +1,24 @@
+{
+    "hadoop_config": {
+        "streaming_jar": "/opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar",
+        "input_path": "/user/root/input",
+        "output_path": "/user/root/output"
+    },
+    "mapreduce_jobs": {
+        "page_views": {
+            "mapper": "page_views_mapper.py",
+            "reducer": "page_views_reducer.py",
+            "description": "Analyzes page view counts from web server logs"
+        },
+        "traffic_analysis": {
+            "mapper": "traffic_analysis_mapper.py",
+            "reducer": "traffic_analysis_reducer.py",
+            "description": "Analyzes hourly traffic patterns and status codes"
+        },
+        "user_analysis": {
+            "mapper": "user_analysis_mapper.py",
+            "reducer": "user_analysis_reducer.py",
+            "description": "Analyzes user IP distribution and referral sources"
+        }
+    }
+}

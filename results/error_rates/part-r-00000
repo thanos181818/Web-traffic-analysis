@@ -1,0 +1,14 @@
+error_page_/	435
+error_page_/about	405
+error_page_/admin	404
+error_page_/api/data	409
+error_page_/blog	390
+error_page_/contact	421
+error_page_/home	447
+error_page_/login	400
+error_page_/products	419
+error_page_/products/laptops	405
+error_page_/products/phones	439
+error_page_/register	437
+errors_total	5011
+total_requests	10000

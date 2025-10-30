@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Hours Analysis - Hadoop Web Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Peak Hours Analysis</h1>
+            <p>Busiest traffic hours and patterns</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/page-views">Page Views</a></li>
+                <li><a href="/traffic">Traffic Analysis</a></li>
+                <li><a href="/users">User Analysis</a></li>
+                <li><a href="/peak-hours" class="active">Peak Hours</a></li>
+                <li><a href="/errors">Error Analysis</a></li>
+                <li><a href="/content">Content Performance</a></li>
+                <li><a href="/charts">Charts</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section class="results-section">
+                <h2>Peak Hours Analysis</h2>
+                <div class="results-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hour</th>
+                                <th>Visits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in peak_hours %}
+                            <tr>
+                                <td>{{ item.hour }}</td>
+                                <td>{{ item.visits }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

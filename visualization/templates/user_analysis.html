@@ -5,50 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Analysis - Hadoop Web Analytics</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>User Analysis</h1>
-            <p>User distribution and referral sources</p>
-        </header>
-        
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/page-views">Page Views</a></li>
-                <li><a href="/traffic">Traffic Analysis</a></li>
-                <li><a href="/users" class="active">User Analysis</a></li>
-                <li><a href="/peak-hours">Peak Hours</a></li>
-                <li><a href="/errors">Error Analysis</a></li>
-                <li><a href="/content">Content Performance</a></li>
-                <li><a href="/charts">Charts</a></li>
-            </ul>
-        </nav>
-        
-        <main>
-            <section class="results-section">
-                <h2>User Analysis</h2>
-                <div class="results-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Metric</th>
-                                <th>Count</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in user_data %}
-                            <tr>
-                                <td>{{ item.metric }}</td>
-                                <td>{{ item.count }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Hadoop Analytics</h2>
+            <p>Web Server Log Analysis</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="/page-views"><i class="fas fa-eye"></i> <span>Page Views</span></a></li>
+            <li><a href="/traffic"><i class="fas fa-traffic-light"></i> <span>Traffic Analysis</span></a></li>
+            <li><a href="/users" class="active"><i class="fas fa-users"></i> <span>User Analysis</span></a></li>
+            <li><a href="/peak-hours"><i class="fas fa-chart-line"></i> <span>Peak Hours</span></a></li>
+            <li><a href="/errors"><i class="fas fa-exclamation-triangle"></i> <span>Error Analysis</span></a></li>
+            <li><a href="/content"><i class="fas fa-file-alt"></i> <span>Content Performance</span></a></li>
+            <li><a href="/charts"><i class="fas fa-chart-bar"></i> <span>Charts</span></a></li>
+        </ul>
     </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1>User Analysis</h1>
+            <div class="user-info">
+                <div class="user-avatar">AD</div>
+                <span>Admin User</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">User Distribution and Referral Sources</h2>
+            </div>
+            
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in user_data %}
+                        <tr>
+                            <td>{{ item.metric }}</td>
+                            <td>{{ item.count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

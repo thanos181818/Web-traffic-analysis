@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts - Hadoop Web Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Hadoop Analytics</h2>
+            <p>Web Server Log Analysis</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="/page-views"><i class="fas fa-eye"></i> <span>Page Views</span></a></li>
+            <li><a href="/traffic"><i class="fas fa-traffic-light"></i> <span>Traffic Analysis</span></a></li>
+            <li><a href="/users"><i class="fas fa-users"></i> <span>User Analysis</span></a></li>
+            <li><a href="/peak-hours"><i class="fas fa-chart-line"></i> <span>Peak Hours</span></a></li>
+            <li><a href="/errors"><i class="fas fa-exclamation-triangle"></i> <span>Error Analysis</span></a></li>
+            <li><a href="/content"><i class="fas fa-file-alt"></i> <span>Content Performance</span></a></li>
+            <li><a href="/charts" class="active"><i class="fas fa-chart-bar"></i> <span>Charts</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1>Analytics Charts</h1>
+            <div class="user-info">
+                <div class="user-avatar">AD</div>
+                <span>Admin User</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Visual Data Analytics</h2>
+                <div class="time-filter">
+                    <select class="btn btn-outline">
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                        <option>Last 90 Days</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h2>Page Views Over Time</h2>
+                    <canvas id="pageViewsChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h2>Traffic Distribution by Hour</h2>
+                    <canvas id="trafficByHourChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h2>User Referral Sources</h2>
+                    <canvas id="referralSourcesChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h2>HTTP Status Code Distribution</h2>
+                    <canvas id="statusCodesChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h2>Top Performing Content</h2>
+                    <canvas id="topContentChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h2>Error Rate Trends</h2>
+                    <canvas id="errorTrendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Chart configurations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page Views Over Time Chart
+            const pageViewsCtx = document.getElementById('pageViewsChart').getContext('2d');
+            new Chart(pageViewsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Page Views',
+                        data: [12000, 19000, 15000, 25000, 22000, 18000, 14000],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+
+            // Traffic by Hour Chart
+            const trafficByHourCtx = document.getElementById('trafficByHourChart').getContext('2d');
+            new Chart(trafficByHourCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                    datasets: [{
+                        label: 'Visits',
+                        data: [450, 320, 2500, 3500, 3200, 2800],
+                        backgroundColor: '#1abc9c',
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+
+            // Referral Sources Chart
+            const referralCtx = document.getElementById('referralSourcesChart').getContext('2d');
+            new Chart(referralCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Direct', 'Google', 'Social Media', 'Referral Sites', 'Email'],
+                    datasets: [{
+                        data: [40, 25, 15, 12, 8],
+                        backgroundColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#9b59b6',
+                            '#f1c40f',
+                            '#e74c3c'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            // Status Codes Chart
+            const statusCtx = document.getElementById('statusCodesChart').getContext('2d');
+            new Chart(statusCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['200 OK', '404 Not Found', '302 Found', '500 Server Error', 'Other'],
+                    datasets: [{
+                        data: [85, 8, 4, 2, 1],
+                        backgroundColor: [
+                            '#27ae60',
+                            '#e74c3c',
+                            '#f39c12',
+                            '#8e44ad',
+                            '#95a5a6'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            // Top Content Chart - Fixed for Chart.js v3+
+            const topContentCtx = document.getElementById('topContentChart').getContext('2d');
+            new Chart(topContentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Homepage', 'Product A', 'Blog Post', 'About Us', 'Contact'],
+                    datasets: [{
+                        label: 'Views',
+                        data: [25000, 18000, 12000, 8000, 5000],
+                        backgroundColor: '#3498db',
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // This makes it horizontal
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+
+            // Error Trends Chart
+            const errorTrendsCtx = document.getElementById('errorTrendsChart').getContext('2d');
+            new Chart(errorTrendsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: '404 Errors',
+                        data: [45, 52, 38, 28],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: '500 Errors',
+                        data: [12, 8, 15, 6],
+                        borderColor: '#8e44ad',
+                        backgroundColor: 'rgba(142, 68, 173, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
